@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    outline: 1px solid red;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, b, a, p {
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.active {
+    #nav-home-button{
+    color: #c3c3c3;
+    background-color: #2f2f2f;
+    border: #000 2px solid;
+    }
+
+    #nav-home-dot{
+        background-color: #1db954;
+    }
+}
+
+app-start{
+    display: block;
+    margin-top: var(--header-height, 200px);
+}
