@@ -1,26 +1,26 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-start',
+  selector: 'app-hey',
   imports: [],
   template: `
     <p>
-      start works!
+      hey works!
     </p>
     <p>
-      start works!
+      hey works!
     </p>
     <p>
-      start works!
+      hey works!
     </p>
     <p>
-      start works!
+      hey works!
     </p>
     <p>
-      start works!
+      hey works!
     </p>
     <p>
-      start works!
+      hey works!
     </p>
   `,
   styles: `
@@ -29,6 +29,6 @@ import { Component } from '@angular/core';
   }
   `
 })
-export class Start {
+export class Hey {
 
 }

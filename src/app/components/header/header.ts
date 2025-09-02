@@ -1,36 +1,39 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink],
   template: `
        <header #headerEl class="header">
         <div class="header-left">
-            <div class="logo">
-                <a href="/home">
-                    <img src="images/placeholder.png" alt="logo">
-                </a>
-            </div>
+          <div class="logo">
+            <a href="/">
+                <img src="images/placeholder.png" alt="logo">
+            </a>
+          </div>
         </div>
 
         <nav>
-            <ul>
-                <div class="nav-w-dots">
-                    <div class="fields" id="nav-home-field">
-                        <div class="dots" id="nav-home-dot"></div>
-                        <li><a href="/home" id="nav-home-button">Start</a></li>
-                    </div>
-                    <div class="fields" id="nav-hey-field">
-                        <div class="dots" id="nav-hey-dot"></div>
-                        <li><a href="/hey" id="nav-hey-button">Hey</a></li>
-                    </div>
-                    <div class="fields" id="nav-test-field">
-                        <div class="dots" id="nav-test-dot"></div>
-                        <li><a href="/test" id="nav-test-button">test</a></li>
-                    </div>
-                </div>
-            </ul>
-        </nav>
+          <ul>
+          <div class="nav-w-dots">
+            <div class="fields" id="nav-start-field">
+              <div class="dots" id="nav-start-dot"></div>
+              <li><a routerLink="/" id="nav-start-button">Start</a></li>
+            </div>
+            <div class="fields" id="nav-hey-field">
+              <div class="dots" id="nav-hey-dot"></div>
+              <li><a routerLink="/hey" id="nav-hey-button">Hey</a></li>
+            </div>
+            <div class="fields" id="nav-test-field">
+              <div class="dots" id="nav-test-dot"></div>
+              <li><a routerLink="/test" id="nav-test-button">test</a></li>
+            </div>
+          </div>
+        </ul>
+      </nav>
     </header>
   `,
   styles: `
@@ -50,16 +53,30 @@ import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
     transition: height 0.1s ease, padding 0.1s ease;
 }
 
-header .left {
+  header.scrolled {
+    padding: 10px 20px;
+  }
+
+  header .left {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 380px;
-}
+    transition: width 0.2s ease;
+  }
 
-.logo img{
+  header.scrolled .left {
+    width: 330px;
+  }
+
+  .logo img {
     height: 120px;
-}
+    transition: height 0.1s ease;
+  }
+
+  header.scrolled .logo img {
+    height: 80px;
+  }
 
 .nav-w-dots {
     display: flex;
@@ -111,9 +128,26 @@ nav a:active {
   `
 })
 export class Header implements AfterViewInit {
-  @ViewChild('headerEl') headerEl!: ElementRef<HTMLElement>;
+ @ViewChild('headerEl') headerEl!: ElementRef<HTMLElement>;
+  private scrollThreshold = 70; 
+
   ngAfterViewInit() {
     this.updateHeaderHeight();
+    
+    // Listen to scroll events
+    fromEvent(window, 'scroll')
+      .pipe(debounceTime(10))
+      .subscribe(() => {
+        this.onWindowScroll();
+      });
+  }
+
+  private onWindowScroll() {
+    if (window.scrollY > this.scrollThreshold) {
+      this.headerEl.nativeElement.classList.add('scrolled');
+    } else {
+      this.headerEl.nativeElement.classList.remove('scrolled');
+    }
   }
 
   private updateHeaderHeight() {
