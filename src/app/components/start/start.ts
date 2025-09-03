@@ -1,32 +1,23 @@
 import { Component } from '@angular/core';
+import { Intro } from './intro/intro';
 
 @Component({
   selector: 'app-start',
-  imports: [],
+  imports: [Intro],
   template: `
-    <p>
-      start works!
-    </p>
-    <p>
-      start works!
-    </p>
-    <p>
-      start works!
-    </p>
-    <p>
-      start works!
-    </p>
-    <p>
-      start works!
-    </p>
-    <p>
-      start works!
-    </p>
+    <div class="start-container">
+      <app-intro />
+    </div>
   `,
   styles: `
-  p{
-    font-size: 150px;
-  }
+    .start-container {
+      outline: 5px solid #ff000024;
+      width: 1100px;
+      height: 1500px;
+      display: block;
+      justify-content: center;
+      align-items: center;
+    }
   `
 })
 export class Start {

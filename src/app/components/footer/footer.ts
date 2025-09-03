@@ -9,10 +9,11 @@ import { debounceTime } from 'rxjs/operators';
   <div class="info-box" >
     <div class="ib-top">
       <ul>
-        <li><a href="/impressum">Impressum</a></li>
-        <li><a href="/ueber">Über uns</a></li>
-          <li><a href="/legal">Rechtliches & Richtlinien</a></li>
-          <li><a href="/cookies">Cookies</a></li>
+        <li><a href="/impressum">Kontakt</a></li>
+        <p class="v-line">|</p>
+        <li><a href="/ueber">Über mich</a></li>
+        <p class="v-line">|</p>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Thel-V">Mein Github</a></li>
       </ul>
     </div>
     <div class="bottom-box-seperator"></div> <!-- SEPERATOR -->
@@ -28,118 +29,126 @@ import { debounceTime } from 'rxjs/operators';
   </div>
   `,
   styles: `
-  .info-box{
-    width: 100%;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: #131313;
-    padding: 0px 100px;
-}
+    .info-box{
+      width: 100%;
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      background-color: #131313;
+      padding: 0px 100px;
+    }
 
-.info-box ul{
-    text-decoration: none;
-    list-style: none;
-}
+    .info-box ul{
+      text-decoration: none;
+      list-style: none;
+    }
 
-.ib-top li{
-    margin: 5px;
-}
+    .ib-top li, .v-line{
+      margin: 5px;
+    }
 
-.ib-top a{
-    color: #999;
-    transition: 0.3s;
-}
+    .ib-top a{
+      color: #999;
+      transition: 0.3s;
+    }
 
-.ib-top a:hover{
-    color: #fff;
-    text-shadow: 0 0 10px #fff, 0 0 20px #1db954;
-}
+    .ib-top a:hover{
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #1db954;
+    }
 
-.ib-top{
-    width: 1000px;
-    padding: 0px 100px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
+    .ib-top ul {
+      display: flex;
+      flex-direction: row; /* or column */
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    
+    .ib-top{
+      width: 1000px;
+      display: flex;
+      flex-direction: row; 
+      align-items: center;
+      justify-content: space-around; /* or space-between, center, etc. */
+      text-align: center;
+    }
 
-.ib-top{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
+    .v-line{
+      color:  #444;
 
-.bottom-box-seperator{
-    width: 700px;
-    border: 2px solid #363837;
-    border-radius: 10px;
-}
+    }
 
-.ib-bot{
-    width: 1000px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0px 200px;
-}
+    .bottom-box-seperator{
+      width: 700px;
+      border: 2px solid #363837;
+      border-radius: 10px;
+    }
 
-.ib-bot p{
-  color: #999;
-}
+    .ib-bot{
+      width: 1000px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0px 200px;
+    }
 
-.BTTTB {
-  position: fixed;
-  bottom: 5%;
-  right: 8%;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-  z-index: 1000;
-  background-color: #ffffff;
-  border-radius: 50%;
-  border: 5px solid #ffffffff;
-  transition:  0.4s;
-}
+    .ib-bot p{
+      color: #999;
+    }
 
-.BTTTB:hover {
-  background-color: #cacacaff;
-  border: 5px solid #939393ff;
-}
+    .BTTTB {
+      position: fixed;
+      bottom: 5%;
+      right: 8%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+      z-index: 1000;
+      background-color: #ffffff;
+      width: 6.5rem;
+      border-radius: 5rem;
+      border: 5px solid #ffffffff;
+      transition:  0.4s;
+    }
 
-.BTTTB.show {
-  opacity: 1;
-  visibility: visible;
-}
+    .BTTTB:hover {
+      background-color: #cacacaff;
+      border: 5px solid #939393ff;
+    }
 
-.BTTTB a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
+    .BTTTB.show {
+      opacity: 1;
+      visibility: visible;
+    }
 
-.BTTTB img{
-  width: 70px;
-  animation:  pulse 1.5s infinite;
-}
+    .BTTTB a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+    .BTTTB img{
+      width: 60px;
+      animation:  pulse 1.5s infinite;
+      border-radius: 50%;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
   `
 })
 export class Footer {

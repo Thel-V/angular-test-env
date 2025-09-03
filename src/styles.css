@@ -23,7 +23,8 @@ img {
 }
 
 app-start, app-hey, app-test{
-    display: block;
+    display: grid;
+    place-items: center;
     margin-top: var(--header-height, 200px);
     margin-bottom: 80px; /* Das Wert kommt aus header: header height + 80px */
 }
