@@ -14,9 +14,8 @@ import { Intro } from './intro/intro';
       outline: 5px solid #ff000024;
       width: 1100px;
       height: 1500px;
-      display: block;
+      display: flex;
       justify-content: center;
-      align-items: center;
     }
   `
 })

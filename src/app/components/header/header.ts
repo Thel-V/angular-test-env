@@ -2,10 +2,13 @@ import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faAnglesDown } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [FontAwesomeModule, RouterLink],
   template: `
        <header #headerEl class="header">
         <div class="header-left">
@@ -34,7 +37,11 @@ import { debounceTime, filter } from 'rxjs/operators';
           </div>
         </ul>
       </nav>
-    </header>
+    <div class="hint-symbol">        
+      <fa-icon [icon]="faAnglesDown"></fa-icon>
+    </div>  
+    </header>  
+
   `,
   styles: `
   header {
@@ -134,9 +141,38 @@ import { debounceTime, filter } from 'rxjs/operators';
     background-color: #2f2f2f;
     border: #000 2px solid;
   }
+
+  .hint-symbol{
+    position: absolute;
+    top: 92vh;
+    font-size: 4em;
+    bottom: 5%;
+    right: 50%;
+    color: #000000ff;
+    transform: translateX(50%);
+    animation:  pulse 1.5s infinite;
+    transition: 0.5s;
+  }
+
+  header.scrolled .hint-symbol{
+    color: transparent;
+  }
+
+  @keyframes pulse {
+    0% {
+      top: 92vh;
+    }
+    50% {
+      top: 90vh;
+    }
+    100% {
+      top: 92vh;
+    }
+  }
   `
 })
 export class Header implements AfterViewInit {
+  faAnglesDown = faAnglesDown; 
   @ViewChild('headerEl') headerEl!: ElementRef<HTMLElement>;
   private scrollThreshold = 70; 
 

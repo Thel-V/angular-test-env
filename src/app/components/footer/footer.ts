@@ -1,10 +1,12 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [FontAwesomeModule],
   template: `
   <div class="info-box" >
     <div class="ib-top">
@@ -21,17 +23,17 @@ import { debounceTime } from 'rxjs/operators';
       <p>&copy; 2025 Rudermann Werke</p>
       <p>Hansastraße 1, 90441 Nürnberg</p>
     </div>
-    <div class="BTTTB" #btttb><a href="javascript:void(0)" (click)="scrollToTop()"><img src="images/btttb.png" alt="btttb-logo"></a></div>
-    <!-- <div class="BTTTB-cup">
-      <div class="cup-shaft"></div>
-      <div class="cup-end"></div>
-    </div> no hope-->
+      <div class="BTTTB" #btttb>
+          <a href="javascript:void(0)" (click)="scrollToTop()">
+            <fa-icon [icon]="faChevronUp"></fa-icon>
+          </a>
+      </div>
   </div>
   `,
   styles: `
     .info-box{
       width: 100%;
-      height: 250px;
+      height: 200px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -78,7 +80,6 @@ import { debounceTime } from 'rxjs/operators';
 
     .v-line{
       color:  #444;
-
     }
 
     .bottom-box-seperator{
@@ -109,7 +110,7 @@ import { debounceTime } from 'rxjs/operators';
       transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
       z-index: 1000;
       background-color: #ffffff;
-      width: 6.5rem;
+      width: 7.5rem;
       border-radius: 5rem;
       border: 5px solid #ffffffff;
       transition:  0.4s;
@@ -118,6 +119,16 @@ import { debounceTime } from 'rxjs/operators';
     .BTTTB:hover {
       background-color: #cacacaff;
       border: 5px solid #939393ff;
+    }
+
+    .BTTTB:active {
+      background-color: #1db954;
+      border: 5px solid #1db954;
+      transition:  0.2s;
+    }
+
+    .BTTTB:active fa-icon{
+      color: #fff;
     }
 
     .BTTTB.show {
@@ -132,10 +143,16 @@ import { debounceTime } from 'rxjs/operators';
       text-decoration: none;
     }
 
-    .BTTTB img{
-      width: 60px;
+    .BTTTB fa-icon{
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+      color: #000;
+      margin: 10px;
+      font-size: 4rem;
       animation:  pulse 1.5s infinite;
       border-radius: 50%;
+      transition:  0.3s;
     }
 
     @keyframes pulse {
@@ -152,6 +169,7 @@ import { debounceTime } from 'rxjs/operators';
   `
 })
 export class Footer {
+  faChevronUp = faChevronUp;
   @ViewChild('btttb') btttb!: ElementRef;
   private scrollThreshold = 70;
 
