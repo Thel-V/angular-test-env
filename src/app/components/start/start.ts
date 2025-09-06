@@ -7,6 +7,10 @@ import { Intro } from './intro/intro';
   template: `
     <div class="start-container">
       <app-intro />
+      <!-- <app-description /> -->
+      <!-- <app-focus /> -->
+      <!-- <app-projects /> -->
+      
     </div>
   `,
   styles: `
